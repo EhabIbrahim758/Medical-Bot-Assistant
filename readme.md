@@ -13,6 +13,9 @@ Key Features:
 
 ## 2. Installation and Setup
 
+### Hardware Requirements
+- Minumum system ram 32GB 
+- Minimum system VRam 24GB
 ### Prerequisites
 - Python 3.9 or higher
 - pip package manager
@@ -27,6 +30,7 @@ cd medical-task-parser
 conda create --name assistant-env python==3.10 -y
 conda activate assistant-env
 pip install -r requirements.txt
+huggingface-cli login >> put your huggingface access token  
 ```
 
 ## 3. Usage
