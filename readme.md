@@ -23,7 +23,7 @@ Key Features:
 ### Dependencies Installation
 ```bash
 # Clone the repository
-git clone git@github.com:EhabIbrahim758/Medical-Bot-Assistant.git
+git clone https://github.com/EhabIbrahim758/Medical-Bot-Assistant.git
 cd medical-task-parser
 
 # Create and activate conda environment (optional but recommended)
