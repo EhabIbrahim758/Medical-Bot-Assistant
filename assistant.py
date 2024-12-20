@@ -2,6 +2,7 @@ from typing import Union, Dict, List
 import json
 from transformers import pipeline
 
+
 class MedicalTaskParser:
     def __init__(self, model_name: str = "mistralai/Mistral-7B-Instruct-v0.3"): 
         """
@@ -123,27 +124,6 @@ class MedicalTaskParser:
         '''
         self.pipeline = pipeline("text-generation", model="mistralai/Mistral-7B-Instruct-v0.3")
 
-    def _validate_json(self, json_str: str) -> Union[Dict, List]:
-        """
-        Validate and clean the JSON output
-        
-        Args:
-            json_str (str): JSON string to validate
-            
-        Returns:
-            Union[Dict, List]: Parsed JSON object
-        """
-        try:
-            # Remove any additional text before and after the JSON
-            json_str = json_str.strip()
-            if json_str.find('{') > 0:
-                json_str = json_str[json_str.find('{'):]
-            if json_str.find('}') < len(json_str) - 1:
-                json_str = json_str[:json_str.rfind('}') + 1]
-                
-            return json.loads(json_str)
-        except json.JSONDecodeError as e:
-            raise ValueError(f"Invalid JSON output: {str(e)}")
 
     def run(self, query: str) -> Union[Dict, List]:
         """
@@ -166,11 +146,11 @@ class MedicalTaskParser:
                 "content": query
                 }
             ]
-            response = self.pipeline(messages, max_tokens=500)
-            response = response[0]["generated_text"]
-            json_output = self._validate_json(response)
-            return json_output
-            
+            response = self.pipeline(messages, max_new_tokens=500)
+            response = response[0]['generated_text'][2:]
+            results = response[0]['content'].strip()
+            results = json.loads(results)
+            return results
         except Exception as e:
             return {
                 "error": {

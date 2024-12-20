@@ -14,8 +14,8 @@ Key Features:
 ## 2. Installation and Setup
 
 ### Hardware Requirements
-- Minumum system ram 32GB 
-- Minimum system VRam 24GB
+- Minumum system ram 30GB 
+- Minimum system VRam 30GB
 ### Prerequisites
 - Python 3.9 or higher
 - pip package manager
@@ -103,6 +103,8 @@ POST /parse
 | POST | `/parse` | Parse single medical instruction |
 | POST | `/batch_parse` | Parse multiple medical instructions |
 
+
+- you will find many API calls in the Testing Section 
 
 ## 6. How To Run Tests 
 
